@@ -1,4 +1,6 @@
-<img src="doc/logo.svg" width="200" align="center"/>
+<p align="center">
+ <img src="doc/logo.svg" width="200"/>
+</p>
 
 Expo
 ====
