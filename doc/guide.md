@@ -53,7 +53,7 @@ Create `/var/www/photos/.htaccess`:
 ```sh
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule /(.*) /cdn/expo/index.php [END]
+RewriteRule /(.*) /var/www/expo/index.php [END]
 ```
 
 Now you should see your gallery when opening an album from  `/photos`.
