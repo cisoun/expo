@@ -30,7 +30,7 @@ See [live demo](https://drowned.ch/photos).
 # Go to your photos folder.
 mv /var/www/photos
 
-# Glone Expo there.
+# Clone Expo there.
 git clone --depth 1 https://github.com/cisoun/Expo .
 ```
 
