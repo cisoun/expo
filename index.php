@@ -9,10 +9,11 @@ $path        = rtrim($_SERVER['REQUEST_URI'], DIRECTORY_SEPARATOR);
 $images_path = $_SERVER['DOCUMENT_ROOT'] . $_SERVER['REQUEST_URI'];
 
 // Default configuration.
-$images       = glob("$images_path/*.{jpg,png,gif,webp,avif}", GLOB_BRACE);
-$lazy_loading = true;
-$theme        = 'default';
-$title        = 'My photos';
+$images        = glob("$images_path/*.{jpg,png,gif,webp,avif}", GLOB_BRACE);
+$lazy_loading  = true;
+$theme         = 'default';
+$theme_variant = '';
+$title         = 'My photos';
 
 // Configuration overrides.
 @include("$images_path/config.php");
@@ -23,7 +24,7 @@ $icons_path   = "$theme_path/icons.svg";
 $style_path   = "$theme_path/style.css";
 ?>
 <!DOCTYPE html>
-<html>
+<html data-theme-variant="<?= $theme_variant ?>">
 <head>
 	<title><?= $title ?></title>
 	<meta charset="utf-8">

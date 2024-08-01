@@ -3,6 +3,10 @@
 	--fg: #000;
 	--gap: 3vw;
 }
+:root[data-theme-variant="dark"] {
+	--bg: #000;
+	--fg: #fff;
+}
 body {
 	background-color: var(--bg);
 	color: var(--fg);

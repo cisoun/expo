@@ -12,8 +12,9 @@ $lazy_loading = true;
 
 // Theme of the album.
 // Available:
-//  - default
+//  - default (variants: dark)
 $theme = "default";
+$theme_variant = "dark";
 
 // Title of the album.
 $title = "My album";
