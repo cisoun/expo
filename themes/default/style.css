@@ -1,0 +1,98 @@
+:root {
+	--bg: #fff;
+	--fg: #000;
+	--gap: 3vw;
+}
+body {
+	background-color: var(--bg);
+	color: var(--fg);
+	margin: 0;
+	overflow: hidden;
+	user-select: none;
+}
+#container {
+	height: 100%;
+	overflow: auto;
+	position: absolute;
+	width: 100%;
+}
+#grid {
+	display: grid;
+	gap: var(--gap);
+	padding: calc(2 * var(--gap));
+}
+#grid img {
+	aspect-ratio: 1;
+	cursor: zoom-in;
+	display: block;
+	height: auto;
+	line-height: 0px;
+	object-fit: contain;
+	opacity: 0;
+	text-align: justify;
+	transition: opacity 1s;
+	width: 100%;
+}
+#grid img.visible {
+	opacity: 1;
+}
+#modal {
+	background-color: var(--bg);
+	display: flex;
+	flex-direction: column;
+	height: calc(100% - var(--gap));
+	opacity: 0;
+	padding: var(--gap);
+	padding-bottom: none;
+	position: fixed;
+	transition: opacity 0.2s;
+	visibility: hidden;
+	width: calc(100% - 2 * var(--gap));
+	z-index: 1;
+}
+#modal.visible {
+	opacity: 1;
+	visibility: visible;
+}
+#modal > #image {
+	cursor: zoom-out;
+	flex-grow: 1;
+	height: 100%;
+	object-fit: scale-down;
+	overflow: auto;
+}
+#modal > #controls {
+	display: flex;
+	flex-direction: row;
+	height: 5rem;
+	justify-content: center;
+}
+#modal > #controls a {
+	cursor: pointer;
+	height: 5rem;
+	text-align: center;
+	width: 5rem;
+}
+#modal > #controls svg {
+	fill: none;
+	height: 5rem;
+	stroke-linecap: round;
+	stroke-width: 0.4;
+	stroke: var(--fg);
+	width: 2rem;
+}
+@media only screen and (max-width: 600px) {
+	#modal > #controls a {
+		width: 100%;
+	}
+}
+@media only screen and (min-width: 600px) {
+	#grid {
+		grid-template-columns: auto auto;
+	}
+}
+@media only screen and (min-width: 992px) {
+	#grid {
+		grid-template-columns: auto auto auto;
+	}
+}
