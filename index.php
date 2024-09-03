@@ -11,6 +11,7 @@ $images_path = $_SERVER['DOCUMENT_ROOT'] . $_SERVER['REQUEST_URI'];
 // Default configuration.
 $images        = glob("$images_path/*.{jpg,png,gif,webp,avif}", GLOB_BRACE);
 $lazy_loading  = true;
+$preview       = $images[0] ?? null;
 $theme         = 'default';
 $theme_variant = '';
 $title         = 'My photos';
@@ -22,6 +23,10 @@ $images_count = count($images);
 $theme_path   = "$app_path/themes/$theme";
 $icons_path   = "$theme_path/icons.svg";
 $style_path   = "$theme_path/style.css";
+$preview_url  = $preview ?
+                rtrim($_SERVER['REQUEST_URI'], DIRECTORY_SEPARATOR) .
+                DIRECTORY_SEPARATOR .
+                basename($preview) : '';
 ?>
 <!DOCTYPE html>
 <html data-theme-variant="<?= $theme_variant ?>">
@@ -30,6 +35,7 @@ $style_path   = "$theme_path/style.css";
 	<meta charset="utf-8">
 	<meta name="generator" content="https://github.com/cisoun/Expo">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:image" content="<?= $preview_url ?>" />
 	<link rel="stylesheet" type="text/css" href="<?= $style_path ?>">
 </head>
 <body>
