@@ -40,7 +40,7 @@ $preview_url  = $preview ?
 </head>
 <body>
 	<div id="modal">
-		<img id="image" src="" />
+		<img id="image" src=""/>
 		<div id="controls">
 			<a><svg><use href="<?= $icons_path ?>#previous"/></svg></a>
 			<a><svg><use href="<?= $icons_path ?>#close"/></svg></a>
@@ -49,9 +49,9 @@ $preview_url  = $preview ?
 	</div>
 	<div id="container">
 	<div id="grid">
-		<?php foreach ($images as $i): ?>
 		<img src="<?= $path . '/' . basename($i) ?>" <?= getimagesize($i)[3] ?> <?php if($lazy_loading): ?>loading="lazy"<?php endif ?>/>
-		<?php endforeach; ?>
+<?php foreach ($images as $i): ?>
+<?php endforeach; ?>
 	</div>
 	</div>
 	<script type="text/javascript">
