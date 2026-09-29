@@ -55,10 +55,10 @@ $preview_url  = $preview ?
 	</div>
 	</div>
 	<script type="text/javascript">
-	let current, touchX;
 	const show     = e => image.src = (current = e).src;
 	const next     = _ => show(current.nextElementSibling     ?? grid.firstElementChild);
 	const previous = _ => show(current.previousElementSibling ?? grid.lastElementChild);
+	let current, touchX, touches = 0;
 	const reveal   = e => e.srcElement.classList.add('visible');
 	const toggle   = e => {
 		modal.classList.toggle('visible');
@@ -76,10 +76,15 @@ $preview_url  = $preview ?
 	controls.children[0].onclick = e => { e.stopPropagation(); previous(); }
 	controls.children[1].onclick = e => toggle(e);
 	controls.children[2].onclick = e => { e.stopPropagation(); next(); }
-	image.onclick               = e => toggle(e);
-	modal.ontouchstart          = e => touchX = e.changedTouches[0].clientX;
-	modal.ontouchend            = e => {
-		if      (e.changedTouches[0].clientX - touchX > +50) previous();
+	image.onclick                = e => toggle(e);
+	modal.ontouchstart           = e => {
+		touchX = e.changedTouches[0].clientX;
+		touches = Math.max(touches, e.touches.length);
+		if (e.touches.length == 1) touches = 1;
+	}
+	modal.ontouchend             = e => {
+		if      (touches > 1) return;
+		else if (e.changedTouches[0].clientX - touchX > +50) previous();
 		else if (e.changedTouches[0].clientX - touchX < -50) next();
 	}
 	</script>
