@@ -33,7 +33,7 @@ $preview_url  = $preview ?
 <head>
 	<title><?= $title ?></title>
 	<meta charset="utf-8">
-	<meta name="generator" content="https://github.com/cisoun/Expo">
+	<meta name="generator" content="https://github.com/cisoun/expo">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta property="og:image" content="<?= $preview_url ?>" />
 	<link rel="stylesheet" type="text/css" href="<?= $style_path ?>">
@@ -55,37 +55,37 @@ $preview_url  = $preview ?
 	</div>
 	</div>
 	<script type="text/javascript">
-	const show     = e => image.src = (current = e).src;
-	const next     = _ => show(current.nextElementSibling     ?? grid.firstElementChild);
-	const previous = _ => show(current.previousElementSibling ?? grid.lastElementChild);
-	let current, touchX, touches = 0;
-	const reveal   = e => e.srcElement.classList.add('visible');
-	const toggle   = e => {
-		if (modal.classList.toggle('visible')) show(e.srcElement);
-	}
-	Array.from(grid.children).map(e => {
-		e.onclick = toggle;
-		e.onload  = reveal;
-	});
-	document.onkeydown = e => {
-		if      (e.keyCode == 37) previous();
-		else if (e.keyCode == 39) next();
-		else if (e.keyCode == 27) modal.classList.toggle('visible', false);
-	}
-	controls.children[0].onclick = e => { e.stopPropagation(); previous(); }
-	controls.children[1].onclick = e => toggle(e);
-	controls.children[2].onclick = e => { e.stopPropagation(); next(); }
-	image.onclick                = e => toggle(e);
-	modal.ontouchstart           = e => {
-		touchX = e.changedTouches[0].clientX;
-		touches = Math.max(touches, e.touches.length);
-		if (e.touches.length == 1) touches = 1;
-	}
-	modal.ontouchend             = e => {
-		if      (touches > 1) return;
-		else if (e.changedTouches[0].clientX - touchX > +50) previous();
-		else if (e.changedTouches[0].clientX - touchX < -50) next();
-	}
+		let current, touchX, touches = 0;
+		const next     = e => show(current.nextElementSibling     ?? grid.firstElementChild);
+		const previous = e => show(current.previousElementSibling ?? grid.lastElementChild);
+		const reveal   = e => e.srcElement.classList.add('visible');
+		const show     = e => image.src = (current = e).src;
+		const toggle   = e => {
+			if (modal.classList.toggle('visible')) show(e.srcElement);
+		}
+		Array.from(grid.children).map(e => {
+			e.onclick = toggle;
+			e.onload  = reveal;
+		});
+		document.onkeydown = e => {
+			if      (e.keyCode == 37) previous();
+			else if (e.keyCode == 39) next();
+			else if (e.keyCode == 27) modal.classList.toggle('visible', false);
+		}
+		controls.children[0].onclick = e => { e.stopPropagation(); previous(); }
+		controls.children[1].onclick = e => toggle(e);
+		controls.children[2].onclick = e => { e.stopPropagation(); next(); }
+		image.onclick                = e => toggle(e);
+		modal.ontouchstart           = e => {
+			touchX = e.changedTouches[0].clientX;
+			touches = Math.max(touches, e.touches.length);
+			if (e.touches.length == 1) touches = 1;
+		}
+		modal.ontouchend             = e => {
+			if      (touches > 1) return;
+			else if (e.changedTouches[0].clientX - touchX > +50) previous();
+			else if (e.changedTouches[0].clientX - touchX < -50) next();
+		}
 	</script>
 </body>
 </html>
