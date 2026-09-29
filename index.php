@@ -61,8 +61,7 @@ $preview_url  = $preview ?
 	let current, touchX, touches = 0;
 	const reveal   = e => e.srcElement.classList.add('visible');
 	const toggle   = e => {
-		modal.classList.toggle('visible');
-		show(e.srcElement);
+		if (modal.classList.toggle('visible')) show(e.srcElement);
 	}
 	Array.from(grid.children).map(e => {
 		e.onclick = toggle;
